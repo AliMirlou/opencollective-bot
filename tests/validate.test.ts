@@ -61,7 +61,7 @@ describe('validate', () => {
       })
   })
 
-  test('correctly handles invalid input', async () => {
+  test('correctly handles invalid input, YAMLException', async () => {
     const config = `f123
       opencollective: 'https://opencollective.com/graphql-shield',
     `
@@ -79,7 +79,8 @@ describe('validate', () => {
         fail()
       })
       .catch(err => {
-        expect(err).toMatchSnapshot()
+        console.log(err.message)
+        expect(err.message).toContain('YAML file is not properly formatted')
       })
   })
 
